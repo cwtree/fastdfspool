@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration scan="true">
+
+	<property name="LOG_PATH" value="/data/log" />
+	<property name="LOG_LEVEL" value="info" />
+
+	<appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder charset="UTF-8">
+			<pattern>[%d{yyyy-MM-dd HH:mm:ss:SSS}][%-5p][%c][%t]%m%n</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="CVT"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${LOG_PATH}/cvt.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${LOG_PATH}/cvt.log.%d{yyyyMMdd}
+			</fileNamePattern>
+		</rollingPolicy>
+		<encoder charset="UTF-8">
+			<pattern>[%d{yy-MM-dd HH:mm:ss:SSS}][%-5p][%c][%t]%m%n</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="THREAD"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${LOG_PATH}/thread.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${LOG_PATH}/thread.log.%d{yyyyMMdd}
+			</fileNamePattern>
+		</rollingPolicy>
+		<encoder charset="UTF-8">
+			<pattern>[%d{yy-MM-dd HH:mm:ss:SSS}][%-5p][%c][%t]%m%n</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="HB"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${LOG_PATH}/location_hb.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${LOG_PATH}/location_hb.log.%d{yyyyMMdd}
+			</fileNamePattern>
+		</rollingPolicy>
+		<encoder charset="UTF-8">
+			<pattern>%m%n</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="SYSTEM"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${LOG_PATH}/system.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${LOG_PATH}/system.log.%d{yyyyMMdd}
+			</fileNamePattern>
+		</rollingPolicy>
+		<encoder charset="UTF-8">
+			<pattern>[%d{yy-MM-dd HH:mm:ss:SSS}][%-5p][%c][%t]%m%n</pattern>
+		</encoder>
+	</appender>
+
+	<logger name="location-hb" level="${LOG_LEVEL}" additivity="false">
+		<appender-ref ref="HB" />
+	</logger>
+
+	<logger name="com.cmcc.dpi.cvt" level="${LOG_LEVEL}" additivity="false">
+		<appender-ref ref="SYSTEM" />
+	</logger>
+
+	<logger name="com.cmcc.dpi.cvt.thread" level="${LOG_LEVEL}"
+		additivity="false">
+		<appender-ref ref="THREAD" />
+	</logger>
+
+	<logger name="com.cmcc.dpi.cvt.netty" level="${LOG_LEVEL}"
+		additivity="false">
+		<appender-ref ref="CVT" />
+	</logger>
+
+	<logger name="com.cmcc.dpi.cvt.kafka" level="${LOG_LEVEL}"
+		additivity="false">
+		<appender-ref ref="CVT" />
+	</logger>
+
+	<root level="${LOG_LEVEL}">
+		<appender-ref ref="CONSOLE" />
+		<appender-ref ref="SYSTEM" />
+		<appender-ref ref="CVT" />
+	</root>
+
+</configuration>  
