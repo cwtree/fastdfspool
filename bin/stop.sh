@@ -1,15 +1,15 @@
 #!/bin/bash
 
-dpiCvtGo_pids=`ps -ef | grep "dpiCvtGo.jar" | grep -v grep | awk '{print $2}'`
-for dpiCvtGo_pid in $dpiCvtGo_pids
+fastdfspool_pids=`ps -ef | grep "fastdfspool.jar" | grep -v grep | awk '{print $2}'`
+for fastdfspool_pid in $fastdfspool_pids
 do
-    echo stop dpiCvtGo java process: $dpiCvtGo_pid
-    kill -9 $dpiCvtGo_pid
+    echo stop fastdfspool java process: $fastdfspool_pid
+    kill -9 $fastdfspool_pid
 done
 
-nr_dpiCvtGo_pids=`ps -ef | grep "dpiCvtGo.jar" | grep -v grep | wc -l`
-while [ $nr_dpiCvtGo_pids -gt 0 ]
+nr_fastdfspool_pids=`ps -ef | grep "fastdfspool.jar" | grep -v grep | wc -l`
+while [ $nr_fastdfspool_pids -gt 0 ]
 do
-    nr_dpiCvtGo_pids=`ps -ef | grep "dpiCvtGo.jar" | grep -v grep | wc -l`
+    nr_fastdfspool_pids=`ps -ef | grep "fastdfspool.jar" | grep -v grep | wc -l`
 done
-echo now, dpiCvtGo process is not run!
+echo now, fastdfspool process is not run!
