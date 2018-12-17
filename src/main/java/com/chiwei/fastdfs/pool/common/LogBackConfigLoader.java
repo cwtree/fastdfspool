@@ -1,12 +1,3 @@
-/**  
- * Project Name:cmcc.cvt  
- * File Name:LogBackConfigLoader.java  
- * Package Name:com.cmcc.dpi.cvt.common  
- * Date:2018年2月1日下午4:19:55  
- * Copyright (c) 2018, chiwei@chinamobile.com All Rights Reserved.  
- *  
-*/
-
 package com.chiwei.fastdfs.pool.common;
 
 import org.slf4j.LoggerFactory;
